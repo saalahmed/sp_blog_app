@@ -10,8 +10,6 @@ Projet évalué du cours 6.3.3.:MVC et Framework
 - **Technologie utilisée :** Symfony 5  
 - **Objectif :** Réaliser une application web de gestion de budget
 
----
-
 ### Livrables attendus
 
 - 📄 Diagramme de classe
@@ -21,24 +19,21 @@ Projet évalué du cours 6.3.3.:MVC et Framework
   - L'organisation du travail
   - La contribution de chaque membre de l’équipe
 
----
-
 ### Fonctionnalités attendues
 
-- ✅ Gestion des **comptes utilisateurs**
-- ✅ Gestion des **catégories**
+- Gestion des **comptes utilisateurs**
+- Gestion des **catégories**
   - Ajout
   - Modification
   - Suppression
-- ✅ Gestion des **moyens de paiement**
+- Gestion des **moyens de paiement**
   - Ajout
   - Modification
   - Suppression
-- ✅ Gestion des **transactions**
+- Gestion des **transactions**
   - Ajout
   - Modification
   - Suppression
   - Affichage
-- ✅ Affichage des **statistiques** et des **bilans annuels**
+- Affichage des **statistiques** et des **bilans annuels**
 
----
