@@ -1,39 +1,50 @@
-# sp_budget_app
-Projet évalué du cours 6.3.3.:MVC et Framework
+# 📦 PROJET SYMFONY
+
+## 🧠 Contexte
+
+Vous êtes développeur web junior dans une agence digitale. Pour le compte de l’un de vos clients, vous devez créer un **site web dynamique sans utiliser de CMS**.  
+Le choix du **framework Symfony** a été validé par le client.
 
 
-## Projet : Application de gestion de budget
+## 🎯 Mission
 
-### Informations générales
+Après une brève présentation du client, le chef de projet vous communique les **fonctionnalités attendues**.
 
-- **Nombre de personnes par groupe :** 4  
-- **Technologie utilisée :** Symfony 5  
-- **Objectif :** Réaliser une application web de gestion de budget
 
-### Livrables attendus
+## 🌍 Front Office
 
-- 📄 Diagramme de classe
-- 🌐 Application réalisée avec Symfony 5 et **hébergée en ligne**
-- 🔗 Lien GitHub du repository de l'application avec **au moins 5 commits**
-- 📝 Un **rapport d'une page** décrivant :
-  - L'organisation du travail
-  - La contribution de chaque membre de l’équipe
+- 🏠 Une page d’accueil essentiellement graphique contenant **les 3 dernières actualités**
+- 📰 Une page listant toutes les actualités
+- 🧾 Une page dédiée pour chaque actualité avec :
+  - Possibilité d’**ajouter un commentaire**
+  - Option pour **signaler un commentaire**
+- 🏢 Une page de **présentation du client**
+- 📬 Une page de **contact**
+- 📝 Une page d’**inscription**
+- 🔐 Une page de **connexion**
 
-### Fonctionnalités attendues
 
-- Gestion des **comptes utilisateurs**
-- Gestion des **catégories**
-  - Ajout
-  - Modification
-  - Suppression
-- Gestion des **moyens de paiement**
-  - Ajout
-  - Modification
-  - Suppression
-- Gestion des **transactions**
-  - Ajout
-  - Modification
-  - Suppression
-  - Affichage
-- Affichage des **statistiques** et des **bilans annuels**
+## 🛠️ Back Office
 
+- ⚙️ **Gestion des articles/posts**
+- 🧹 **Gestion des commentaires**
+- 👥 **Gestion des utilisateurs**
+
+
+## 📂 Livrables attendus
+
+- 📋 **Spécifications fonctionnelles** du projet
+- 📐 **Diagramme de classe** de la solution cible
+- 🔗 **Repository GitHub** du projet avec commits significatifs
+- 🌐 **Lien vers l’application hébergée en ligne**
+
+
+## 👥 Organisation
+
+- Travail en **groupe de 4 personnes** maximum
+
+
+## 🧰 Technologies
+
+- Framework : **Symfony**
+- L’usage des **bundles Symfony** est autorisé et encouragé
