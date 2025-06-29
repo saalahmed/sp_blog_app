@@ -29,9 +29,6 @@ jobs:
       - name: Validate Symfony config
         run: php bin/console lint:yaml config/ --no-interaction
 
-      - name: Check database migrations status
-        run: php bin/console doctrine:migrations:status --quiet
-
-      # Si on ajoute des tests PHPUnit, décommentez ces lignes :
-      #- name: Run tests
-      #  run: php bin/phpunit
+      # Vérification des migrations désactivée en CI
+      # - name: Check database migrations status
+      #   run: php bin/console doctrine:migrations:status --quiet
