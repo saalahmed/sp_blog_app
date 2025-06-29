@@ -1,0 +1,41 @@
+@startuml
+' Définition des classes principales
+
+class Utilisateur {
+  +id : int
+  +nom : string
+  +email : string
+  +motDePasse : string
+  +inscription() : void
+  +connexion() : bool
+}
+
+class Actualite {
+  +id : int
+  +titre : string
+  +contenu : text
+  +datePublication : DateTime
+  +publier() : void
+}
+
+class Commentaire {
+  +id : int
+  +contenu : text
+  +dateAjout : DateTime
+  +signaler() : void
+}
+
+class Admin {
+  +id : int
+  +privileges : string[]
+  +moderation() : void
+}
+
+' Relations
+
+Utilisateur "1" -- "0..*" Commentaire : poste >
+Actualite    "1" -- "0..*" Commentaire : contient >
+Commentaire  --> Utilisateur           : auteur >
+Admin        --|> Utilisateur          : héritage >
+
+@enduml
