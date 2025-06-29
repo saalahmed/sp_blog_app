@@ -1,0 +1,34 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, feature/lydia-specs ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          extensions: mbstring, intl, pdo_mysql
+
+      - name: Install Composer dependencies
+        run: composer install --no-progress --no-suggest --prefer-dist
+
+      - name: Validate Symfony config
+        run: php bin/console lint:yaml config/ --no-interaction
+
+      - name: Check database migrations status
+        run: php bin/console doctrine:migrations:status --quiet
+
+      # Si on ajoutes des tests PHPUnit, décommente ces lignes :
+      #- name: Run tests
+      #  run: php bin/phpunit
