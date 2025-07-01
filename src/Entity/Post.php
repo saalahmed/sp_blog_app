@@ -41,9 +41,19 @@ class Post
     #[ORM\OneToMany(targetEntity: Comment::class, mappedBy: 'post', orphanRemoval: true)]
     private Collection $comments;
 
+    #[ORM\ManyToOne]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $updatedBy = null;
+
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
+    }
+
+    public function __toString(): string
+    {
+        return $this->getId() . ' ' . $this->getTitle();
     }
 
     public function getId(): ?int
@@ -149,6 +159,18 @@ class Post
                 $comment->setPost(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUpdatedBy(): ?User
+    {
+        return $this->updatedBy;
+    }
+
+    public function setUpdatedBy(?User $updatedBy): static
+    {
+        $this->updatedBy = $updatedBy;
 
         return $this;
     }

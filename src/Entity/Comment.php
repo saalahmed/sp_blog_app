@@ -31,6 +31,13 @@ class Comment
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
 
+    #[ORM\Column]
+    private ?bool $isApproved = null;
+
+    #[ORM\ManyToOne]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $updatedBy = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -92,6 +99,30 @@ class Comment
     public function setUpdatedAt(?\DateTimeImmutable $updatedAt): static
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function isApproved(): ?bool
+    {
+        return $this->isApproved;
+    }
+
+    public function setIsApproved(bool $isApproved): static
+    {
+        $this->isApproved = $isApproved;
+
+        return $this;
+    }
+
+    public function getUpdatedBy(): ?User
+    {
+        return $this->updatedBy;
+    }
+
+    public function setUpdatedBy(?User $updatedBy): static
+    {
+        $this->updatedBy = $updatedBy;
 
         return $this;
     }
