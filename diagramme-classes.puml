@@ -1,0 +1,69 @@
+@startuml diagramme-classes
+skinparam classAttributeIconSize 0
+
+class Utilisateur {
+  +id : int
+  +email : string
+  +roles : json
+  +password : string
+  +firstName : string
+  +lastName : string
+  +isActive : boolean
+  +createdBy : int?
+  +updatedBy : int?
+  +createdAt : DateTime
+  +updatedAt : DateTime
+
+  // Méthodes Utilisateur
+  +connexion() : bool
+  +inscription() : Utilisateur
+  +commenter(post: Post, contenu: string) : Commentaire
+  +supprimerCommentaire(commentaire: Commentaire) : void
+}
+
+class Post {
+  +id : int
+  +author : Utilisateur
+  +updatedBy : Utilisateur?
+  +title : string
+  +content : text?
+  +featuredImage : string?
+  +createdAt : DateTime
+  +updatedAt : DateTime?
+  +postAt : DateTime
+  +isPublished : boolean
+
+  // Méthodes Post
+  +creer(author: Utilisateur, titre: string, contenu?: string) : Post
+  +modifier(titre: string, contenu?: string) : void
+  +publier() : void
+  +depublier() : void
+  +supprimer() : void
+}
+
+class Commentaire {
+  +id : int
+  +author : Utilisateur
+  +post : Post
+  +updatedBy : Utilisateur?
+  +content : text
+  +createdAt : DateTime
+  +updatedAt : DateTime?
+  +isApproved : boolean
+
+  // Méthodes Commentaire
+  +creer(author: Utilisateur, post: Post, contenu: string) : Commentaire
+  +modifier(contenu: string) : void
+  +approuver() : void
+  +rejeter() : void
+  +supprimer() : void
+}
+
+Utilisateur "1" -- "0..*" Post : author
+Utilisateur "1" -- "0..*" Post : updatedBy
+Post "1" -- "0..*" Commentaire : post
+Utilisateur "1" -- "0..*" Commentaire : author
+Utilisateur "1" -- "0..*" Commentaire : updatedBy
+Commentaire "*" -- "1" Post : post
+
+@enduml
