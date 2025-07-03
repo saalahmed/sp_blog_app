@@ -1,0 +1,52 @@
+{% extends 'security.html.twig' %}
+
+{% block title %}A propos{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1 class="mb-4">A propos de nous</h1>
+
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% endfor %}
+
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <h2 class="h5">Nos coordonnées</h2>
+                <p><strong>Adresse :</strong><br>123 Rue Exemple<br>75000 Paris</p>
+                <p><strong>Téléphone :</strong><br><a href="tel:+33123456789">01 23 45 67 89</a></p>
+                <p><strong>Email :</strong><br><a href="mailto:contact@example.com">contact@example.com</a></p>
+                <p><strong>Horaires :</strong><br>Lundi à Vendredi : 9h – 18h</p>
+            </div>
+
+            <div class="col-md-8">
+                <div class="card">
+                <div class="card-body">
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus.
+                        Donec facilisis fermentum sem, ac viverra ante luctus vel. Donec vel mauris quam.
+                        Vivamus dignissim, nunc non consequat hendrerit, metus justo malesuada turpis,
+                        at cursus risus mauris at erat. Praesent vulputate sapien eu viverra placerat.
+                        Proin sit amet sem at odio ullamcorper posuere.
+                    </p>
+                    <p>
+                        Curabitur lacinia, turpis nec facilisis bibendum, erat ligula imperdiet justo,
+                        vitae pharetra lorem enim in nunc. Phasellus non ante non orci convallis tincidunt.
+                        Suspendisse potenti. Nunc fermentum, justo sed consequat blandit, neque quam pulvinar enim,
+                        id convallis nunc elit vel erat. Vestibulum non elit sit amet purus facilisis dignissim.
+                        Duis ac sem sed sapien dignissim laoreet.
+                    </p>
+                    <p>
+                        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+                        laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi
+                        architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas
+                        sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione
+                        voluptatem sequi nesciunt.
+                    </p>
+                </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

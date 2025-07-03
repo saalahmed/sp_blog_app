@@ -1,0 +1,72 @@
+{% extends 'security.html.twig' %}
+
+{% block title %}
+    Articles
+{% endblock title %}
+
+
+{% block body %}
+<div class="container py-5">
+    <h1 class="mb-4 text-center h2" style="font-weight: 600; font-size: 32px; color: #1e293b;">
+        Tous les articles
+    </h1>
+    <div class="d-flex justify-content-end mb-4">
+        <form method="get" action="{{ path('post_list') }}" class="d-flex align-items-center" style="max-width: 400px;">
+            <input
+                    type="text"
+                    name="query"
+                    value="{{ queryText|default('') }}"
+                    class="form-control form-control-sm"
+                    placeholder="Rechercher..."
+                    style="height: 35px;"
+            >
+            <button type="submit" class="btn btn-primary btn-sm ms-2" style="height: 35px; border-radius: 20px;">
+                Rechercher
+            </button>
+        </form>
+    </div>
+    {% if posts|length > 0 %}
+        <div class="row">
+            {% for post in posts %}
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow-sm border-0">
+                        {% if post.featuredImage %}
+                            <img src="{{ asset('images/posts/' ~ post.featuredImage) }}" class="card-img-top fixed-img" alt="Image">
+                        {% else %}
+                            <img src="{{ asset('images/default.jpg') }}" class="card-img-top fixed-img" alt="Image par défaut">
+                        {% endif %}
+
+                        <div class="card-body">
+                            <h2 class="card-title h5" style="color: #001a70; font-family: 'Poppins', sans-serif;">
+                                {{ post.title }}
+                            </h2>
+                            <p class="card-text">{{ post.content|striptags|slice(0, 100) ~ '...' }}</p>
+                            <a href="{{ path('post_show', { id: post.id }) }}" class="btn-gradient">
+                                → Voir plus
+                            </a>
+                        </div>
+
+                        <div class="card-footer small text-muted d-flex justify-content-between align-items-center bg-white border-0">
+                            <div>
+                                <i class="bi bi-calendar3 me-1"></i>{{ post.postAt|date('d M Y') }}
+                            </div>
+                            <div>
+                                <i class="bi bi-chat-dots me-1"></i>
+                                {{ post.approvedComments|length }} commentaire{{ post.approvedComments|length > 1 ? 's' : '' }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="mt-4 d-flex justify-content-center">
+            {{ knp_pagination_render(posts) }}
+        </div>
+
+    {% else %}
+        <div class="text-center py-5">
+            <p>Aucun article pour le moment.</p>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
