@@ -45,6 +45,12 @@ class Post
     #[ORM\JoinColumn(nullable: false)]
     private ?User $updatedBy = null;
 
+    #[ORM\Column]
+    private ?\DateTimeImmutable $postAt = null;
+
+    #[ORM\Column]
+    private ?bool $isPublished = null;
+
 
     public function __construct()
     {
@@ -171,6 +177,30 @@ class Post
     public function setUpdatedBy(?User $updatedBy): static
     {
         $this->updatedBy = $updatedBy;
+
+        return $this;
+    }
+
+    public function getPostAt(): ?\DateTimeImmutable
+    {
+        return $this->postAt;
+    }
+
+    public function setPostAt(\DateTimeImmutable $postAt): static
+    {
+        $this->postAt = $postAt;
+
+        return $this;
+    }
+
+    public function isPublished(): ?bool
+    {
+        return $this->isPublished;
+    }
+
+    public function setIsPublished(bool $isPublished): static
+    {
+        $this->isPublished = $isPublished;
 
         return $this;
     }

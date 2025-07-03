@@ -5,6 +5,8 @@ namespace App\Controller\Admin;
 use App\Entity\Post;
 use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
@@ -19,7 +21,7 @@ class PostCrudController extends AbstractCrudController
         return Post::class;
     }
 
-    //apres soumission form
+    //apres soumission form add
     public function persistEntity(EntityManagerInterface $entityManager, $entityInstance): void
     {
         if (!$entityInstance instanceof Post) return;
@@ -30,7 +32,7 @@ class PostCrudController extends AbstractCrudController
     }
 
     //avant creation form
-    public function createEntity(string $entityFqcn)
+    public function createEntity(string $entityFqcn): Post
     {
         $post = new Post();
         $post->setCreatedAt(new \DateTimeImmutable());
@@ -52,9 +54,11 @@ class PostCrudController extends AbstractCrudController
     {
         return [
             TextField::new('title')->setLabel('Titre'),
+            DateTimeField::new('postAt')->setLabel('Date de publication'),
             AssociationField::new('author')->setLabel('Auteur')->hideOnForm(),
             ImageField::new('featuredImage')->setUploadDir('public/images/posts')->setBasePath('/images/posts')->setLabel('Image à la une'),
             TextEditorField::new('content')->setLabel('Contenu'),
+            BooleanField::new('isPublished')->setLabel('Publier'),
         ];
     }
 
