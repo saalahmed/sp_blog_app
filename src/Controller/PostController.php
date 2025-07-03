@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 
 use Doctrine\ORM\EntityManagerInterface;
-
+use Knp\Component\Pager\PaginatorInterface;
 class PostController extends AbstractController
 {
     #[Route('/post/{id}', name: 'post_show')]
@@ -44,14 +44,22 @@ class PostController extends AbstractController
     ]);
     }
     #[Route('/articles', name: 'post_list')]
-    public function list(PostRepository $postRepository): Response
-    {
-        $posts = $postRepository->findBy([], ['createdAt' => 'DESC']);
+public function list(PaginatorInterface $paginator, Request $request, PostRepository $postRepository): Response
+{
+    $query = $postRepository->createQueryBuilder('p')
+        ->orderBy('p.createdAt', 'DESC')
+        ->getQuery();
 
-        return $this->render('post/list.html.twig', [
-            'posts' => $posts,
-        ]);
-    }
+    $posts = $paginator->paginate(
+        $query,
+        $request->query->getInt('page', 1),
+        6
+    );
+
+    return $this->render('post/list.html.twig', [
+        'posts' => $posts,
+    ]);
+}
 
     #[Route('/comment/{id}/report', name: 'comment_report')]
     public function report(Comment $comment, EntityManagerInterface $em): Response

@@ -39,6 +39,10 @@
                 </div>
             {% endfor %}
         </div>
+        <div class="mt-4 d-flex justify-content-center">
+            {{ knp_pagination_render(posts) }}
+        </div>
+
     {% else %}
         <div class="text-center py-5">
             <p>Aucun article pour le moment.</p>
