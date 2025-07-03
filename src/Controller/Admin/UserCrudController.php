@@ -101,7 +101,7 @@ class UserCrudController extends AbstractCrudController
                 ->setLabel('Mot de passe')
                 ->onlyOnForms()
                 ->setRequired($pageName === Crud::PAGE_NEW)
-                ->setHelp($pageName === Crud::PAGE_EDIT ? 'Laissez vide pour ne pas changer le mot de passe.' : ''),
+                ->setHelp($pageName === Crud::PAGE_EDIT ? 'Laissez vide pour ne pas changer le mot de passe.' : '')
         ];
 
         $isActiveField = BooleanField::new('isActive')->setLabel('Actif');
