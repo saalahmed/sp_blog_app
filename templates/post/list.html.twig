@@ -1,0 +1,48 @@
+{% extends 'security.html.twig' %}
+
+{% block body %}
+<div class="container py-5">
+    <h2 class="mb-4 text-center" style="font-weight: 600; font-size: 32px; color: #1e293b;">
+        Tous les articles
+    </h2>
+
+    {% if posts|length > 0 %}
+        <div class="row">
+            {% for post in posts %}
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow-sm border-0">
+                        {% if post.featuredImage %}
+                            <img src="{{ asset('images/posts/' ~ post.featuredImage) }}" class="card-img-top fixed-img" alt="Image">
+                        {% else %}
+                            <img src="{{ asset('images/default.jpg') }}" class="card-img-top fixed-img" alt="Image par défaut">
+                        {% endif %}
+
+                        <div class="card-body">
+                            <h5 class="card-title" style="color: #001a70; font-family: 'Poppins', sans-serif;">
+                                {{ post.title }}
+                            </h5>
+                            <p class="card-text">{{ post.content|striptags|slice(0, 100) ~ '...' }}</p>
+                            <a href="{{ path('post_show', { id: post.id }) }}" class="btn-gradient">
+                                → Voir plus
+                            </a>
+                        </div>
+
+                        <div class="card-footer small text-muted d-flex justify-content-between align-items-center bg-white border-0">
+                            <div>
+                                <i class="bi bi-calendar3 me-1"></i>{{ post.createdAt|date('d M Y') }}
+                            </div>
+                            <div>
+                                <i class="bi bi-chat-dots me-1"></i>{{ post.comments|length }} commentaire{{ post.comments|length > 1 ? 's' : '' }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="text-center py-5">
+            <p>Aucun article pour le moment.</p>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
