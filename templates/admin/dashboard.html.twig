@@ -1,7 +1,80 @@
-{% extends '@EasyAdmin/layout.html.twig' %}
+{% extends '@EasyAdmin/page/content.html.twig' %}
 
+{% block page_title %}
+    <h1 class="title">Tableau de bord</h1>
+{% endblock page_title %}
 
-{% block main %}
-    <h1>Tableau de bord</h1>
+{% block page_content %}
+    <div class="row">
 
-{% endblock main %}
+        {# Articles #}
+        <div class="col-xl-4 col-md-6 mb-4">
+            <div class="card border-left-primary h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                    Articles
+                                </div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ postCount }}</div>
+                                <small class="text-muted">
+                                    Publiés : {{ postPublished }} /
+                                    Non publiés : {{ postUnpublished }}
+                                </small>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-tags fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+        {# Commentaires #}
+        <div class="col-xl-4 col-md-6 mb-4">
+            <div class="card border-left-success h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                    Commentaires
+                                </div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ commentCount }}</div>
+                                <small class="text-muted">
+                                    Approuvés : {{ commentPublished }} /
+                                    Non approuvés : {{ commentUnpublished }}
+                                </small>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-comments fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+        {# Utilisateurs #}
+        <div class="col-xl-4 col-md-6 mb-4">
+                <div class="card border-left-info h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                    Utilisateurs
+                                </div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ userCount }}</div>
+                                <small class="text-muted">
+                                    Actifs : {{ userActive }} /
+                                    Inactifs : {{ userInactive }}
+                                </small>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-users fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+    </div>
+{% endblock page_content %}
