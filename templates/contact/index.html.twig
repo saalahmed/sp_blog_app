@@ -1,0 +1,47 @@
+{% extends 'security.html.twig' %}
+
+{% block title %}Contact{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1 class="mb-4">Contactez-nous</h1>
+
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% endfor %}
+
+        <div class="row">
+            <!-- Colonne de gauche : Coordonnées -->
+            <div class="col-md-6 mb-4">
+                <h2 class="h5">Nos coordonnées</h2>
+                <p><strong>Adresse :</strong><br>123 Rue Exemple<br>75000 Paris</p>
+                <p><strong>Téléphone :</strong><br><a href="tel:+33123456789">01 23 45 67 89</a></p>
+                <p><strong>Email :</strong><br><a href="mailto:contact@example.com">contact@example.com</a></p>
+                <p><strong>Horaires :</strong><br>Lundi à Vendredi : 9h – 18h</p>
+            </div>
+
+            <!-- Colonne de droite : Formulaire -->
+            <div class="col-md-6">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <p class="mb-4 text-muted">Vous pouvez aussi nous écrire directement via ce formulaire</p>
+                        {{ form_start(form) }}
+                        <div class="mb-3">
+                            {{ form_row(form.name) }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_row(form.email) }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_row(form.message) }}
+                        </div>
+                        <div>
+                            {{ form_row(form.send) }}
+                        </div>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
