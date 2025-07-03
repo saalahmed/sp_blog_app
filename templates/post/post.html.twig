@@ -1,0 +1,68 @@
+{% extends 'security.html.twig' %}
+
+{% block title %}
+    {{ post.title }}
+{% endblock title %}
+
+
+{% block body %}
+<div class="container py-5">
+
+    {# Flash Message #}
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success text-center">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    {# Bloc Article #}
+    <div class="bg-white p-4 rounded shadow-sm mb-5">
+        <h2 style="color: #001a70;">{{ post.title }}</h2>
+        <p class="text-muted">{{ post.createdAt|date('d M Y') }} par {{ post.author.firstName }} {{ post.author.lastName }}</p>
+
+        {% if post.featuredImage %}
+            <img src="{{ asset('images/posts/' ~ post.featuredImage) }}" class="img-fluid my-4 post-img rounded" alt="Image de l'article">
+        {% endif %}
+
+        <p class="lead">{{ post.content|raw }}</p>
+    </div>
+
+      {#  Commentaires  #}
+    <div>
+        {% if app.user %}
+        <h5 class="mb-3">Laisser un commentaire</h5>
+        {{ form_start(form) }}
+        {{ form_row(form.content) }}
+        <button type="submit" class="btn-gradient mt-2">→ Je commente</button>
+        {{ form_end(form) }}
+        {% else %}
+            <div class="alert alert-info mt-3">
+                Vous devez être connecté pour laisser un commentaire.
+            </div>
+            <a href="{{ path('app_login', { target: app.request.uri }) }}" class="btn btn-outline-primary mt-2">
+                Se connecter
+            </a>
+        {% endif %}
+
+        <hr class="my-4">
+
+        <h4 class="mb-4" style="color: #374151;">Commentaires</h4>
+        <p class="text-muted mb-1">{{ post.comments|length }} commentaire{{ post.comments|length > 1 ? 's' : '' }}</p>
+
+        {% for comment in post.comments %}
+            {% if comment.isApproved %}
+                <div class="p-3 mb-3">
+                    <strong>{{ comment.author.email }}</strong> — {{ comment.createdAt|date('d M Y') }}
+                    <p>{{ comment.content }}</p>
+                    <a href="{{ path('comment_report', { id: comment.id }) }}" class="text-danger small">🚩 Signaler</a>
+                </div>
+            {% endif %}
+        {% else %}
+            <p class="text-muted">Aucun commentaire pour l’instant.</p>
+        {% endfor %}
+
+
+    </div>
+
+</div>
+{% endblock %}

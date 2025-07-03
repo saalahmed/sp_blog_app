@@ -1,0 +1,74 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm mb-4 px-4 py-3">
+    <div class="container-fluid">
+        <a href="{{ path('home') }}" class="navbar-brand fw-semibold" style="color: #001a70; font-family: 'Poppins', sans-serif; font-size: 20px;">
+            Blog
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <span class="d-none d-lg-flex text-muted small align-items-center ms-auto me-3" style="font-family: 'Inter', sans-serif;">
+            <img src="{{ asset('images/logo-blog.png') }}" alt="Logo" style="height: 36px; margin-right: 6px;">
+            Think. Build. Share.
+        </span>
+
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ms-auto gap-lg-3 mt-3 mt-lg-0">
+                <li class="nav-item">
+                    <a href="{{ path('home') }}"
+                       class="nav-link nav-link-custom {% if app.request.attributes.get('_route') == 'home' %}active{% endif %}">
+                        Accueil
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ path('post_list') }}"
+                       class="nav-link nav-link-custom {% if app.request.attributes.get('_route') == 'post_list' %}active{% endif %}">
+                        Articles
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ path('app_about') }}"
+                       class="nav-link nav-link-custom {% if app.request.attributes.get('_route') == 'app_about' %}active{% endif %}">
+                        A propos
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ path('app_contact') }}"
+                       class="nav-link nav-link-custom {% if app.request.attributes.get('_route') == 'app_contact' %}active{% endif %}">
+                        Contact
+                    </a>
+                </li>
+
+                {% if app.user %}
+                    <li class="nav-item">
+                        {% if 'ROLE_ADMIN' in app.user.roles %}
+                            <a href="/admin" class="nav-link nav-link-custom">
+                                Bonjour! {{ app.user.firstName }}
+                            </a>
+                        {% else %}
+                            <span class="nav-link nav-link-custom">Bonjour! {{ app.user.firstName }}</span>
+                        {% endif %}
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-custom" href="{{ path('app_logout') }}">Se déconnecter</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-custom {% if app.request.attributes.get('_route') == 'app_login' %}active{% endif %}"
+                           href="{{ path('app_login') }}">
+                            Se connecter
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-custom {% if app.request.attributes.get('_route') == 'app_register' %}active{% endif %}"
+                           href="{{ path('app_register') }}">
+                            S'inscrire
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
